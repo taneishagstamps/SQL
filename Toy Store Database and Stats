@@ -1,0 +1,27 @@
+-- Create a toy store database
+CREATE TABLE toy_store (id INTEGER PRIMARY KEY, name TEXT, color TEXT, size TEXT, quantity INTEGER);
+
+INSERT INTO toy_store VALUES (1, "cars", "red", "small", 5);
+INSERT INTO toy_store VALUES (2, "bikes", "blue", "large", 7);
+INSERT INTO toy_store VALUES (3, "balls", "rainbow", "medium", 2);
+INSERT INTO toy_store VALUES (4, "dolls", "pink", "small", 8);
+INSERT INTO toy_store VALUES (5, "animals", "brown", "medium", 10);
+INSERT INTO toy_store VALUES (6, "trucks", "red", "small", 12);
+INSERT INTO toy_store VALUES (7, "blocks", "tan", "large", 20);
+INSERT INTO toy_store VALUES (8, "playdough", "purple", "small", 5);
+INSERT INTO toy_store VALUES (9, "paint", "white", "small", 2);
+INSERT INTO toy_store VALUES (10, "puzzles", "rainbow", "medium", 25);
+INSERT INTO toy_store VALUES (11, "books", "black", "small", 12);
+INSERT INTO toy_store VALUES (12, "instruments", "brown", "medium", 35);
+INSERT INTO toy_store VALUES (13, "legos", "blue", "large", 43);
+INSERT INTO toy_store VALUES (14, "marbles", "white", "small", 14);
+INSERT INTO toy_store VALUES (15, "teddy bears", "brown", "large", 35);
+SELECT * FROM toy_store;
+
+-- Display the database ordered by quantity. 
+
+SELECT * FROM toy_store ORDER BY quantity;
+
+-- What is the total number of toys in the toy store? 
+
+SELECT SUM(quantity) FROM toy_store; 
