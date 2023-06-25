@@ -1,0 +1,47 @@
+-- Create table for movie stars
+
+CREATE TABLE movie_stars (
+id INTEGER PRIMARY KEY,
+name TEXT,
+age INTEGER,
+state TEXT,
+sex TEXT
+);
+
+INSERT INTO movie_stars VALUES(1, "Michael B Jordan", 36, "California", "Male");
+INSERT INTO movie_stars VALUES(2, "Zendaya", 26, "California", "Female");
+INSERT INTO movie_stars VALUES(3, "Will Smith", 54, "Pennsylvania", "Male");
+INSERT INTO movie_stars VALUES(4, "Idris Elba", 50, "England", "Male");
+INSERT INTO movie_stars VALUES(5, "Viola Davis", 57, "South Carolina", "Male");
+
+
+-- Create table for movies
+CREATE TABLE movies (
+id INTEGER PRIMARY KEY,
+movie_name TEXT,
+released INTEGER,
+genre TEXT,
+star_id INTEGER
+);
+
+INSERT INTO movies VALUES(1, "Creed", 2015, "Drama", 1);
+INSERT INTO movies VALUES(2, "The Help", 2011, "Drama", 5);
+INSERT INTO movies VALUES(3, "Gemini Man", 2019, "Sci_Fi", 3);
+INSERT INTO movies VALUES(4, "Spiderman", 2019, "Action", 2);
+INSERT INTO movies VALUES(5, "No Good Deed", 2014, "Thriller", 4);
+INSERT INTO movies VALUES(6, "Bad Boys", 1995, "Action", 3);
+INSERT INTO movies VALUES(7, "Hitch", 2005, "Drama", 3);
+INSERT INTO movies VALUES(8, "Fences", 2016, "Drama", 5);
+INSERT INTO movies VALUES(9, "Black Panther", 2018, "Action", 1);
+INSERT INTO movies VALUES(10, "Small Foot", 2018, "Family", 2);
+
+SELECT * FROM movie_stars;
+SELECT * FROM movies;
+
+SELECT movie_stars.name, movies.movie_name FROM movie_stars
+JOIN movies
+ON movies.star_id = movie_stars.id;
+
+SELECT movie_stars.id, movie_stars.name, movies.movie_name FROM movie_stars
+LEFT OUTER JOIN movies
+ON movies.star_id = movie_stars.id;
