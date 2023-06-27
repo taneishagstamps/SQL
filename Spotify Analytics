@@ -1,0 +1,61 @@
+## For this project, I downloaded Spotify data from Kaggle.
+# Then I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL. 
+
+-- Create table
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+#Then I inserted the Spotify Data .csv into the table.
+
+#Next, I explored the data using the following SQL. 
+
+-- 1. What is the AVG popularity, danceability, and energy by artist and track?
+SELECT
+artist_name
+,track_name
+,avg(popularity)
+,avg(danceability)
+,avg(energy)
+FROM BIT_DB.spotifydata
+GROUP BY artist_name, track_name
+
+-- 2. Who are the top 10 artists? 
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.spotifydata
+ORDER BY popularity desc
+LIMIT 10
+
+-- 3. How many artists have more than 1 song included in Spotify? 
+WITH tempTable AS (
+SELECT artist_name, count(track_id)
+FROM SpotifyData
+GROUP BY artist_name
+HAVING count(track_id) > 1)
+SELECT count(artist_name) FROM tempTable 
+
+-- 4. What artist released the longest song? 
+SELECT artist_name as Artist, 
+track_name as Song, 
+max(duration_ms) as Duration 
+from spotifydata 
+order by Duration
+limit by 1; 
